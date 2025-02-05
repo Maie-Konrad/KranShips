@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class BulletBehavior : MonoBehaviour
 {
+    
+
     public float DestroyTime = 5f;
     public GameObject BulletPreFab;
+
+    public GameObject Explosion;
+    public AudioClip ExplosionSound;
 
     public float speedBullet;
 
@@ -26,10 +31,10 @@ public class BulletBehavior : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        // Obs³uga kolizji
+        
         Debug.Log("Pocisk trafi³ w: " + collision.gameObject.name);
 
-        // Zniszcz pocisk po trafieniu
+        
         Destroy(gameObject);
     }
     IEnumerator BulletDestroy(float Delay)
@@ -40,6 +45,24 @@ public class BulletBehavior : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("HIT in" +  collision.gameObject.name.ToString());
+      //  Debug.Log("HIT in" +  collision.gameObject.name.ToString());
+        Explode();
+        Destroy(gameObject);
+
     }
+
+    private void Explode()
+    {
+        if(Explosion != null)
+        {
+        Instantiate(Explosion,transform.position,Quaternion.identity);
+        }
+        if(ExplosionSound != null) 
+        {
+            Instantiate(ExplosionSound,transform.position,Quaternion.identity);
+        }
+       
+        
+    }
+
 }

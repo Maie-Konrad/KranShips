@@ -6,22 +6,29 @@ public class EnemyBehaviore : MonoBehaviour
 {
     [SerializeField] float SpeedMovement;
     [SerializeField] float SpeedRotation;
-  
-    [SerializeField] int MAXHP = 100;
-    [SerializeField] int HP = 100;
+
+    const int  MAXHP = 100;
+    [SerializeField] int GetDamage = 20;
+
 
     public Rigidbody2D playerRB;
 
-    Rigidbody2D enemyRb;
+    private Rigidbody2D enemyRb;
     public HealtBar HealtBar;
     private Transform PlayerTransform;
-
-    void Start()
+    HealtSystem healtSystem = new HealtSystem(MAXHP);
+    public void Start()
     {
-        HealtSystem healtSystem = new HealtSystem(MAXHP);
+      
         HealtBar.Setup(healtSystem);
-        healtSystem.Damege(50);
-        
+
+
+
+        playerRB = FindObjectOfType<ShipMovement>().GetComponent<Rigidbody2D>();
+        if (playerRB == null)
+        {
+            Debug.LogWarning("Nie znaleziono Rigidbody2D gracza.");
+        }
 
         GameObject Player = GameObject.FindGameObjectWithTag("Player");
         if (Player != null)
@@ -31,16 +38,22 @@ public class EnemyBehaviore : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Player not found");
+            //Debug.LogWarning("Player not found");
         }
 
         enemyRb = GetComponent<Rigidbody2D>();
+        
+       
+        
     }
 
    
     void Update()
     {
-       
+        if(healtSystem.getHealt() == 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
 
@@ -70,6 +83,17 @@ public class EnemyBehaviore : MonoBehaviour
         Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
         Quaternion targetRotation2 = Quaternion.Euler(0, 0,enemyRb.rotation);
         transform.rotation = Quaternion.Slerp(targetRotation2, targetRotation, SpeedRotation *0.1f);
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("colison okok??");
+        if(collision.collider.CompareTag("Bullet"))
+        {
+
+            healtSystem.Damege(GetDamage);
+
+        }
+
     }
 }
 

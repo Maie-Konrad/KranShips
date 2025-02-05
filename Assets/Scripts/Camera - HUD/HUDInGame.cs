@@ -10,6 +10,8 @@ public class HUDInGame : MonoBehaviour
     [SerializeField] private TextMeshProUGUI Turbotext;
     [SerializeField] private TextMeshProUGUI SpeedText;
 
+    [SerializeField] private GameObject Gameover;
+
     public float Recoil;
     public float turbo;
     public float speed;
@@ -70,5 +72,18 @@ public class HUDInGame : MonoBehaviour
 
 
         }
+
+    }
+    private void OnEnable()
+    {
+        PlayerHP.PlayerDeatch += GameoverSCENE;
+    }
+    private void OnDisable()
+    {
+        PlayerHP.PlayerDeatch -= GameoverSCENE;
+    }
+    public void GameoverSCENE()
+    {
+        Gameover.SetActive(true);
     }
 }

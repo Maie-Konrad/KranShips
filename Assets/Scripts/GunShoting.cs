@@ -8,7 +8,7 @@ public class GunShoting : MonoBehaviour
 {
     public GameObject missile;
     public GameObject gunPosition;
-
+    [SerializeField] AudioSource missileSource;
     [SerializeField]float MaxRecoil = 100f;
     public float RecoilValue = 0f;
     [SerializeField] float TimeCooling = 3f;
@@ -66,8 +66,8 @@ public class GunShoting : MonoBehaviour
            
 
 
-            yield return new WaitForSeconds(1f);
-            RecoilValue -= 10f;
+            yield return new WaitForSeconds(0.25f);
+            RecoilValue -= 2.5f;
            
             
         }
@@ -90,6 +90,7 @@ public class GunShoting : MonoBehaviour
         Instantiate(missile, gunPosition.transform.position, gunPosition.transform.rotation);
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         RecoilValue += 5f;
+        missileSource.Play();
     }
 
     public void RecoilOverH()

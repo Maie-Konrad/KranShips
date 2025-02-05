@@ -5,6 +5,7 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     public AudioSource audioSource;
+    public AudioSource audioSourceMusic;
 
     public AudioClip[] clip;
 
@@ -25,6 +26,9 @@ public class SoundManager : MonoBehaviour
 
 
     }
-
+   public void PlayMusic()
+    {
+        audioSourceMusic.Play();
+    }
 
 }

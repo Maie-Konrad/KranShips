@@ -8,7 +8,7 @@ public class HealtSystem
         this.healtMax = healtMax;
         healt = healtMax;
     }
-    public int getHealt() { return healtMax; }
+    public int getHealt() { return healt; }
 
     public float getHealtProcent()
     {

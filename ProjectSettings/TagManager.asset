@@ -6,6 +6,9 @@ TagManager:
   tags:
   - BackGround
   - Bar
+  - Bullet
+  - Enemy
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX
@@ -14,8 +17,8 @@ TagManager:
   - Water
   - UI
   - BackGound
-  - 
-  - 
+  - Player
+  - Enemy
   - 
   - 
   - 
