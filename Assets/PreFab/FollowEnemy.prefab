@@ -440,7 +440,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 1
-  frequency: 0.16
+  typeOfEnemy: 0
+  frequency: 1.14
   missile: {fileID: 8728603037400721559, guid: dfb8b69846d9ffc4abca028ce9250dd1, type: 3}
   gunPosition: {fileID: 3850347543881187604}
 --- !u!4 &674253407771488393 stripped
