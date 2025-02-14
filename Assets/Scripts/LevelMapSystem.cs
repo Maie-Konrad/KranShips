@@ -91,7 +91,7 @@ public class LevelMapSystem : MonoBehaviour
     }
 
 
-        float CalculateTimeToTarget(float distance, float speed, float deceleration)
+        public float CalculateTimeToTarget(float distance, float speed, float deceleration)
         {
             if (deceleration <= 0)
             {
@@ -120,12 +120,7 @@ public class LevelMapSystem : MonoBehaviour
         startTimer = true;
     }
 
-    private void SpawnerEnemy()
-    {
 
-
-
-    }
 
 }
 
